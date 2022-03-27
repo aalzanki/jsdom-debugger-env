@@ -63,6 +63,8 @@ class MyEnvironment extends BrowserEnvironment {
         }),
       })
     );
+
+    this.total_tests_runs = 0;
   }
 
   takeSnapshot() {
@@ -90,29 +92,49 @@ class MyEnvironment extends BrowserEnvironment {
 
     this.debugger_running = false;
 
-    const stringified = JSON.stringify(snapshots);
+    if (this.total_tests_runs === 1) {
+      const stringified = JSON.stringify(snapshots);
 
-    const storage = getStorage();
-    const storageRef = ref(storage, makeId(20));
+      const storage = getStorage();
+      const storageRef = ref(storage, makeId(20));
 
-    // 'file' comes from the Blob or File API
+      // 'file' comes from the Blob or File API
 
-    await uploadString(storageRef, stringified);
+      await uploadString(storageRef, stringified);
 
-    const url = await getDownloadURL(storageRef);
+      const url = await getDownloadURL(storageRef);
 
-    // `url` is the download URL for 'images/stars.jpg'
+      // `url` is the download URL for 'images/stars.jpg'
 
-    // This can be downloaded directly:
-    console.log(
-      `
-      
-      JSDOM Debugger URL: https://jsdom-debugger.vercel.app/?storageUrl=${encodeURIComponent(
-        url
-      )}
-      
-      `
-    );
+      // This can be downloaded directly:
+      console.log(
+        `
+        ---------------------------------------
+        ---------------------------------------
+        JSDOM Debugger URL: https://jsdom-debugger.vercel.app/?storageUrl=${encodeURIComponent(
+          url
+        )}
+        ---------------------------------------
+        ---------------------------------------
+        
+        `
+      );
+    } else {
+      console.log(
+        "##### JSDOM Debugger: Multiple tests runs detected. Skipping URL generation. To generate a URL, run only one test."
+      );
+    }
+  }
+  async handleTestEvent(event) {
+    if (
+      event &&
+      event.name === "test_fn_start" &&
+      event.test &&
+      event.test.type === "test" &&
+      event.test.status !== "skip"
+    ) {
+      this.total_tests_runs++;
+    }
   }
 }
 
