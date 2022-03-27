@@ -93,7 +93,7 @@ class MyEnvironment extends BrowserEnvironment {
     const stringified = JSON.stringify(snapshots);
 
     const compressed = LZUTF8.compress(stringified, {
-      outputEncoding: "ByteArray",
+      outputEncoding: "Base64",
     });
 
     const storage = getStorage();
@@ -101,7 +101,9 @@ class MyEnvironment extends BrowserEnvironment {
 
     // 'file' comes from the Blob or File API
 
-    await uploadBytes(storageRef, compressed);
+    await uploadString(storageRef, compressed, "base64", {
+      contentType: "text",
+    });
 
     const url = await getDownloadURL(storageRef);
 
