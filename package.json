@@ -1,8 +1,24 @@
 {
   "name": "jsdom-debugger-env",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
+  "keywords": [
+    "react",
+    "test",
+    "testing",
+    "library",
+    "ui",
+    "jsdom",
+    "end-to-end",
+    "e2e",
+    "debug",
+    "render",
+    "visualize",
+    "see",
+    "view",
+    "browser"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
