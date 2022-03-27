@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/aalzanki/jsdom-debugger-env/issues"
   },
-  "homepage": "https://github.com/aalzanki/jsdom-debugger-env#readme"
+  "homepage": "https://github.com/aalzanki/jsdom-debugger-env#readme",
+  "dependencies": {
+    "firebase": "^9.6.10"
+  }
 }
