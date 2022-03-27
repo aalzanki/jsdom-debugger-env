@@ -103,6 +103,17 @@ class MyEnvironment extends BrowserEnvironment {
 
     // 'file' comes from the Blob or File API
     await uploadBytes(storageRef, Buffer.from(compressed, "base64"));
+
+    const url = await getDownloadURL(ref(storage, "images/stars.jpg"));
+
+    // `url` is the download URL for 'images/stars.jpg'
+
+    // This can be downloaded directly:
+    console.log(
+      `JSDOM Debugger URL: https://jsdom-debugger-6f730xxym-aalzanki.vercel.app/?storageUrl=${encodeURIComponent(
+        url
+      )}`
+    );
   }
 }
 
