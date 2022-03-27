@@ -12,7 +12,7 @@ const { initializeApp } = require("firebase/app");
 const {
   getStorage,
   ref,
-  uploadBytes,
+  uploadString,
   getDownloadURL,
 } = require("firebase/storage");
 // TODO: Add SDKs for Firebase products that you want to use
@@ -107,7 +107,8 @@ class MyEnvironment extends BrowserEnvironment {
     const storageRef = ref(storage, makeId(20));
 
     // 'file' comes from the Blob or File API
-    await uploadBytes(storageRef, Buffer.from(compressed, "base64"));
+
+    await uploadString(storageRef, compressed, "base64");
 
     const url = await getDownloadURL(storageRef);
 
