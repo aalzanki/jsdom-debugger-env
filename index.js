@@ -102,7 +102,7 @@ class MyEnvironment extends BrowserEnvironment {
     const storageRef = ref(storage, makeId(20));
 
     // 'file' comes from the Blob or File API
-    await uploadBytes(storageRef, compressed);
+    await uploadBytes(storageRef, Buffer.from(compressed, "base64"));
   }
 }
 
