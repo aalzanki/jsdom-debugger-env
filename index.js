@@ -12,7 +12,7 @@ const { initializeApp } = require("firebase/app");
 const {
   getStorage,
   ref,
-  uploadBytes,
+  uploadString,
   getDownloadURL,
 } = require("firebase/storage");
 // TODO: Add SDKs for Firebase products that you want to use
