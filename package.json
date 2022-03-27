@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/aalzanki/jsdom-debugger-env#readme",
   "dependencies": {
+    "computed-style-to-inline-style": "^3.0.0",
     "firebase": "^9.6.10"
   }
 }

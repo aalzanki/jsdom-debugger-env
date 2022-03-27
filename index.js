@@ -6,6 +6,8 @@
  */
 
 const BrowserEnvironment = require("jest-environment-jsdom");
+const computedStyleToInlineStyle = require("computed-style-to-inline-style");
+
 const LZUTF8 = require("lzutf8");
 // Import the functions you need from the SDKs you need
 const { initializeApp } = require("firebase/app");
@@ -69,6 +71,9 @@ class MyEnvironment extends BrowserEnvironment {
     const currentHtml = this.global.document.documentElement.outerHTML;
 
     if (currentHtml !== snapshots[snapshots.length - 1]) {
+      computedStyleToInlineStyle(this.global.document.body, {
+        recursive: true,
+      });
       snapshots.push(this.global.document.documentElement.outerHTML);
     }
   }
