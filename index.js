@@ -12,7 +12,7 @@ const { initializeApp } = require("firebase/app");
 const {
   getStorage,
   ref,
-  uploadString,
+  uploadBytes,
   getDownloadURL,
 } = require("firebase/storage");
 // TODO: Add SDKs for Firebase products that you want to use
@@ -69,14 +69,7 @@ class MyEnvironment extends BrowserEnvironment {
     const currentHtml = this.global.document.documentElement.innerHTML;
 
     if (currentHtml !== snapshots[snapshots.length - 1]) {
-      const compressed = LZUTF8.compress(
-        this.global.document.documentElement.innerHTML,
-        {
-          outputEncoding: "StorageBinaryString",
-        }
-      );
-
-      snapshots.push(compressed);
+      snapshots.push(this.global.document.documentElement.innerHTML);
     }
   }
 
@@ -100,7 +93,7 @@ class MyEnvironment extends BrowserEnvironment {
     const stringified = JSON.stringify(snapshots);
 
     const compressed = LZUTF8.compress(stringified, {
-      outputEncoding: "StorageBinaryString",
+      outputEncoding: "ByteArray",
     });
 
     const storage = getStorage();
@@ -108,7 +101,7 @@ class MyEnvironment extends BrowserEnvironment {
 
     // 'file' comes from the Blob or File API
 
-    await uploadString(storageRef, compressed);
+    await uploadBytes(storageRef, compressed);
 
     const url = await getDownloadURL(storageRef);
 
