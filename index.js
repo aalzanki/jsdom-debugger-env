@@ -9,7 +9,12 @@ const BrowserEnvironment = require("jest-environment-jsdom");
 const LZUTF8 = require("lzutf8");
 // Import the functions you need from the SDKs you need
 const { initializeApp } = require("firebase/app");
-const { getStorage, ref, uploadBytes } = require("firebase/storage");
+const {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} = require("firebase/storage");
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
