@@ -72,7 +72,7 @@ class MyEnvironment extends BrowserEnvironment {
       const compressed = LZUTF8.compress(
         this.global.document.documentElement.innerHTML,
         {
-          outputEncoding: "Base64",
+          outputEncoding: "StorageBinaryString",
         }
       );
 
@@ -100,7 +100,7 @@ class MyEnvironment extends BrowserEnvironment {
     const stringified = JSON.stringify(snapshots);
 
     const compressed = LZUTF8.compress(stringified, {
-      outputEncoding: "Base64",
+      outputEncoding: "StorageBinaryString",
     });
 
     const storage = getStorage();
@@ -108,7 +108,7 @@ class MyEnvironment extends BrowserEnvironment {
 
     // 'file' comes from the Blob or File API
 
-    await uploadString(storageRef, compressed, "base64");
+    await uploadString(storageRef, compressed);
 
     const url = await getDownloadURL(storageRef);
 
@@ -116,9 +116,13 @@ class MyEnvironment extends BrowserEnvironment {
 
     // This can be downloaded directly:
     console.log(
-      `JSDOM Debugger URL: https://jsdom-debugger-6f730xxym-aalzanki.vercel.app/?storageUrl=${encodeURIComponent(
+      `
+      
+      JSDOM Debugger URL: https://jsdom-debugger.vercel.app/?storageUrl=${encodeURIComponent(
         url
-      )}`
+      )}
+      
+      `
     );
   }
 }
