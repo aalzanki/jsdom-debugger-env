@@ -112,7 +112,7 @@ class MyEnvironment extends BrowserEnvironment {
 
 ---------------------------------------
 ---------------------------------------
-JSDOM Debugger URL: https://jsdom-debugger.vercel.app/?storageUrl=${encodeURIComponent(
+JSDOM Debugger URL: https://jsdom-debugger.vercel.app/snapshots?storageUrl=${encodeURIComponent(
           url
         )}
 ---------------------------------------
