@@ -109,20 +109,27 @@ class MyEnvironment extends BrowserEnvironment {
       // This can be downloaded directly:
       console.log(
         `
-        ---------------------------------------
-        ---------------------------------------
-        JSDOM Debugger URL: https://jsdom-debugger.vercel.app/?storageUrl=${encodeURIComponent(
+
+---------------------------------------
+---------------------------------------
+JSDOM Debugger URL: https://jsdom-debugger.vercel.app/?storageUrl=${encodeURIComponent(
           url
         )}
-        ---------------------------------------
-        ---------------------------------------
-        
+---------------------------------------
+---------------------------------------
+
         `
       );
     } else {
-      console.log(
-        "##### JSDOM Debugger: Multiple tests runs detected. Skipping URL generation. To generate a URL, run only one test."
-      );
+      console.log(`
+
+---------------------------------------
+---------------------------------------
+JSDOM Debugger: Multiple test runs detected. Skipping URL generation. To generate a URL, run only one test. 
+---------------------------------------
+---------------------------------------
+
+        `);
     }
   }
   async handleTestEvent(event) {
