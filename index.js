@@ -13,6 +13,21 @@ const { getStorage, ref, uploadBytes } = require("firebase/storage");
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+const makeId = (length = 10, includeLetters = true) => {
+  let result = "";
+
+  const characters = includeLetters
+    ? "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+    : "0123456789";
+
+  const charactersLength = characters.length;
+
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+};
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAilhi-2LbjUom9ijMVttzL3poVwV42j3U",
@@ -84,7 +99,7 @@ class MyEnvironment extends BrowserEnvironment {
     });
 
     const storage = getStorage();
-    const storageRef = ref(storage);
+    const storageRef = ref(storage, makeId(20));
 
     // 'file' comes from the Blob or File API
     await uploadBytes(storageRef, compressed);
