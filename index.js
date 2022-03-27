@@ -104,7 +104,7 @@ class MyEnvironment extends BrowserEnvironment {
     // 'file' comes from the Blob or File API
     await uploadBytes(storageRef, Buffer.from(compressed, "base64"));
 
-    const url = await getDownloadURL(ref(storage, "images/stars.jpg"));
+    const url = await getDownloadURL(storageRef);
 
     // `url` is the download URL for 'images/stars.jpg'
 
