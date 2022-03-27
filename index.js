@@ -66,10 +66,10 @@ class MyEnvironment extends BrowserEnvironment {
   }
 
   takeSnapshot() {
-    const currentHtml = this.global.document.documentElement.innerHTML;
+    const currentHtml = this.global.document.documentElement.html;
 
     if (currentHtml !== snapshots[snapshots.length - 1]) {
-      snapshots.push(this.global.document.documentElement.innerHTML);
+      snapshots.push(this.global.document.documentElement.html);
     }
   }
 
