@@ -97,9 +97,7 @@ class MyEnvironment extends BrowserEnvironment {
 
     // 'file' comes from the Blob or File API
 
-    await uploadString(storageRef, stringified, {
-      contentType: "text",
-    });
+    await uploadString(storageRef, stringified);
 
     const url = await getDownloadURL(storageRef);
 
