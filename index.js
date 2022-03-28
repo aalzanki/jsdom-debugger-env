@@ -120,16 +120,6 @@ JSDOM Debugger URL: https://jsdom-debugger.vercel.app/snapshots?storageUrl=${enc
 
         `
       );
-    } else {
-      console.log(`
-
----------------------------------------
----------------------------------------
-JSDOM Debugger: Multiple test runs detected. Skipping URL generation. To generate a URL, run only one test. 
----------------------------------------
----------------------------------------
-
-        `);
     }
   }
   async handleTestEvent(event) {
@@ -138,7 +128,8 @@ JSDOM Debugger: Multiple test runs detected. Skipping URL generation. To generat
       event.name === "test_fn_start" &&
       event.test &&
       event.test.type === "test" &&
-      event.test.status !== "skip"
+      event.test.status !== "skip" &&
+      event.test.mode === "only"
     ) {
       this.total_tests_runs++;
     }
