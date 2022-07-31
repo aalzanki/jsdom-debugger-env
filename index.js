@@ -77,7 +77,7 @@ class MyEnvironment extends BrowserEnvironment {
 
   async setup() {
     this.debugger_running = true;
-
+    await super.setup();
     (async () => {
       while (this.debugger_running) {
         await sleep(1);
@@ -121,6 +121,7 @@ JSDOM Debugger URL: https://jsdom-debugger.vercel.app/snapshots?storageUrl=${enc
         `
       );
     }
+    await super.teardown();
   }
   async handleTestEvent(event) {
     if (
@@ -133,6 +134,9 @@ JSDOM Debugger URL: https://jsdom-debugger.vercel.app/snapshots?storageUrl=${enc
     ) {
       this.total_tests_runs++;
     }
+  }
+  getVmContext() {
+    return super.getVmContext();
   }
 }
 
