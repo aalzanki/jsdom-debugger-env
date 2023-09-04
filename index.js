@@ -53,7 +53,7 @@ function sleep(ms) {
 }
 
 class MyEnvironment extends BrowserEnvironment {
-  constructor(config) {
+  constructor(config, context) {
     super(
       Object.assign({}, config, {
         globals: Object.assign({}, config.globals, {
@@ -61,7 +61,8 @@ class MyEnvironment extends BrowserEnvironment {
           Uint8Array: Uint8Array,
           ArrayBuffer: ArrayBuffer,
         }),
-      })
+      }),
+      context
     );
 
     this.total_tests_runs = 0;
