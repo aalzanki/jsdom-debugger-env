@@ -5,7 +5,7 @@
  * https://github.com/firebase/firebase-js-sdk/issues/3096#issuecomment-637584185
  */
 
-const BrowserEnvironment = require("jest-environment-jsdom");
+const BrowserEnvironment = require("jest-environment-jsdom").default;
 const LZUTF8 = require("lzutf8");
 // Import the functions you need from the SDKs you need
 const { initializeApp } = require("firebase/app");
